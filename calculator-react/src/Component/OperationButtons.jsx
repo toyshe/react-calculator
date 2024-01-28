@@ -1,26 +1,19 @@
-export default function OperationButtons({ setInputOperation, setEquation, equation }) {
+export default function OperationButtons({setInputOperation, setEquation, equation}) {
   const handleOperationButton = (event) => {
-    let clickedOperation
+    let clickedOperation;
+
     if (event.target.innerText === "mod") {
       clickedOperation = `%`;
-      handleOperationButtonClick(clickedOperation);
-      
-    }else if(event.target.innerText === '√'){
-        clickedOperation = `**0.5`;
-      handleOperationButtonClick(clickedOperation);
-    } else if(event.target.innerText === '²'){
-        clickedOperation = `**2`;
-      handleOperationButtonClick(clickedOperation);
-    } else if(event.target.innerText === "pi"){
-        clickedOperation = `* Math.PI`
-        handleOperationButtonClick(clickedOperation)
-    }
-    
-    else {
+    } else if (event.target.innerText === "√") {
+      clickedOperation = `**0.5`;
+    } else if (event.target.innerText === "²") {
+      clickedOperation = `**2`;
+    } else if (event.target.innerText === "pi") {
+      clickedOperation = `* Math.PI`;
+    } else {
       clickedOperation = `${event.target.innerText}`;
-    handleOperationButtonClick(clickedOperation);
-
     }
+    handleOperationButtonClick(clickedOperation);
   };
 
   const handleOperationButtonClick = (clickedOperation) => {
@@ -42,20 +35,15 @@ export default function OperationButtons({ setInputOperation, setEquation, equat
     }
   };
 
+  const operations = [
+    "+", "-", "*", "/", "√", "²", "mod", "pi", "(", ")", ".", "=",
+  ];
+
   return (
     <section className="operation-buttons" onClick={handleOperationButton}>
-      <button>+</button>
-      <button>-</button>
-      <button>*</button>
-      <button>/</button>
-      <button>√</button>
-      <button>²</button>
-      <button>mod</button>
-      <button>pi</button>
-      <button>(</button>
-      <button>)</button>
-      <button>.</button>
-      <button>=</button>
+      {operations.map((operation) => {
+        <button>{operation}</button>;
+      })}
     </section>
   );
 }
